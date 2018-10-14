@@ -1,0 +1,17 @@
+scalar Date
+type Query {
+  appointments: [Appointment!]!
+}
+type User {
+  email: String!
+  password: String!
+}
+type Appointment {
+  start: Date!
+  end: Date!
+  client: Client
+}
+type Client {
+  name: String!
+  appointments: [Appointment]
+}
