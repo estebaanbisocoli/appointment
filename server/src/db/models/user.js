@@ -10,7 +10,8 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  clients: [{ type: Schema.Types.ObjectId, ref: "Client" }]
 });
 UserSchema.pre("save", async function(next) {
   const user = this;

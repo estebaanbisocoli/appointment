@@ -1,11 +1,23 @@
 scalar Date
+#Queries
 type Query {
   appointments: [Appointment!]!
+  user(_id: ID): User
+}
+type Query {
+  clients: [Client!]
+}
+#Mutations
+type Mutation {
+  createUser(email: String!, password: String!): ID!
+  createClient(name: String, _id: ID): ID!
+  createAppointment(start: Date, end: Date, _id: ID): ID!
 }
 type User {
   email: String!
-  password: String!
+  clients: [Client!]
 }
+
 type Appointment {
   start: Date!
   end: Date!
