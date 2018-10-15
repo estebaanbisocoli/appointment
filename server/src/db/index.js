@@ -4,9 +4,9 @@ import Client from "./models/client";
 import User from "./models/user";
 // SET UP Mongoose Promises.
 mongoose.Promise = global.Promise;
-export const startDB = ({ url, db }) => {
+export const startDB = uri => {
   return mongoose.connect(
-    `mongodb://${url}/${db}`,
+    uri,
     { useNewUrlParser: true, useCreateIndex: true }
   );
 };

@@ -4,7 +4,7 @@ import { GraphQLServer } from "graphql-yoga";
 import { startDB, models } from "./db";
 import resolvers from "./graphql/resolvers";
 
-startDB({ url: "localhost:27017", db: "test" })
+startDB(process.env.MONGO_URI_DEV)
   .then(connection => {})
   .catch(e => {
     console.log("error connecting to mongodb", e.message);

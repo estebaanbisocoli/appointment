@@ -1,7 +1,6 @@
 scalar Date
 #Queries
 type Query {
-  appointments: [Appointment!]!
   user(_id: ID): User
 }
 type Query {

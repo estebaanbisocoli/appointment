@@ -1,15 +1,22 @@
 export default {
   Query: {
-    appointments: async (parent, args, { models }) => {
-      const Appointments = await models.Appointment.find({});
-      return Appointments;
-    },
     user: async (parent, { _id }, { models }) => {
       const user = await models.User.findById(_id);
+
       return user;
     }
   },
-  User: {},
+  User: {
+    clients: async (parent, { _id }, { models: { User, Client } }) => {
+      console.log(parent);
+      const clients = await Client.find({
+        _id: {
+          $in: parent.clients
+        }
+      });
+      return clients;
+    }
+  },
   Mutation: {
     createUser: async (parent, args, { models }) => {
       const { email, password } = args;
@@ -52,6 +59,9 @@ export default {
         await User.save();
         return User._id;
       } catch (e) {}
+    },
+    createAppointment: async (parent, args, { models }) => {
+      const { start, end, _id } = args;
     }
   }
 };
